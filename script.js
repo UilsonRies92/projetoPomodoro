@@ -3,7 +3,7 @@
 var mm = 0;
 var ss = 0;
 
-var tempo = 10; //conversão milésimos para segundo
+var tempo = 1000; //conversão milésimos para segundo
 var cron;
 
 function start(){
