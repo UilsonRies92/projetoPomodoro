@@ -4,15 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cronômetro Pomodoro</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div>
-        <h1> Cronômetro pomodoro </h1>
+    <div class="container">
+        <h1> Cronômetro Pomodoro </h1>
         <h1 id="contador">00:00</h1>
-        <button onclick="start();">Iniciar</button>
+        <button id="botao_iniciar"onclick="start();">Iniciar</button>
         <button onclick="pause();">Pausar</button>
         <button onclick="stop()">Parar</button>
+        <h1 id="fase">Clique em Iniciar</h1>
+        <h2 id="name_exercicio"></h2>
+        <h3 id="dificuldade_exercicio"></h3>
+        <p id="descricao_exercicio"></p>
+        <button id="botao_exercicio">Concluir exercício e reiniciar cronômetro</button>
     </div>
+    <audio id="campainha" src="https://st2.depositphotos.com/12206998/a/depositphotos_504775636-track-bells-chimes-musical-instrument-metal.mp3"></audio>
     <script src="script.js"></script>
+    <script src="regrasPomodoro.js"></script>
 </body>
 </html>

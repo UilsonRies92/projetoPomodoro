@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center; /* Centraliza o conteúdo horizontalmente */
+}
+
+h1 {
+    color: #e74c3c; /* Tomate */
+    text-align: center;
+}
+
+button {
+    background-color: #e74c3c; /* Tomate */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #c0392b; /* Tomate mais escuro */
+}
+
+#contador {
+    font-size: 48px;
+    text-align: center;
+    margin-top: 20px;
+    color: #e74c3c; /* Tomate */
+}
+
+#name_exercicio {
+    font-size: 24px;
+    color: #e74c3c; /* Tomate */
+    margin-top: 20px;
+}
+
+#dificuldade_exercicio {
+    font-size: 18px;
+    color: #e74c3c; /* Tomate */
+}
+
+#descricao_exercicio {
+    color: #333; /* Cor do texto padrão */
+    margin-top: 10px;
+}
+
+#botao_exercicio {
+    display: block;
+    margin: 20px auto;
+}

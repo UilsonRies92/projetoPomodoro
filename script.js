@@ -1,41 +1,51 @@
-"use strict"
+let listaExercicios = []; //armazena os exercícios da API
+let exercicioAtual = 0; //número do exercício inicial
+let offset = 0; //offset inicial
 
-var mm = 0;
-var ss = 0;
-
-var tempo = 1000; //conversão milésimos para segundo
-var cron;
-
-function start(){
-cron = setInterval(() => {timer();}, tempo);
-
-}
-
-function pause(){
+function exibirExercicio() {
     
-    clearInterval(cron);
-
-}
-function stop(){
-    clearInterval(cron);
-    mm = 0;
-    ss = 0;
-
-    document.getElementById('contador').innerText = "00:00"
-}
-
-function timer(){
-    ss++;
-
-    if (ss == 60){
-        ss = 0;
-        mm++;
+    if (exercicioAtual === listaExercicios.length - 1) {
+        if (listaExercicios.length % 10 === 0) {
+            offset += 10;
+            getExercises(); //pega novos exercícios assim que concluído o array
+        } else {
+            alert("Não há mais exercícios disponíveis.");
+            return; //exibe alerta caso tenha acabado a lista de exercícios da API
+        }
     }
-    var format =(mm < 10 ? '0' + mm : mm) + ':' + (ss < 10 ? '0' + ss : ss); //botar a esquerda
-    document.getElementById('contador').innerText = format;
-    if (mm >= 25){
-        clearInterval(cron);
-        mm = 0;
-        ss = 0;
-        document.getElementById('contador').innerText = "00:00"
-}}
+  
+    const nameExercicio = document.getElementById('name_exercicio');
+    const dificuldadeExercicio = document.getElementById('dificuldade_exercicio');
+    const descricaoExercicio = document.getElementById('descricao_exercicio');
+
+    nameExercicio.innerText = listaExercicios[exercicioAtual].name;
+    dificuldadeExercicio.innerText = listaExercicios[exercicioAtual].difficulty;
+    descricaoExercicio.innerText = listaExercicios[exercicioAtual].instructions;
+
+    exercicioAtual++;
+}
+
+function getExercises() {
+    fetch(`https://api.api-ninjas.com/v1/exercises?type=stretching&offset=${offset}`, {
+        method: 'GET', 
+        headers: { 'X-Api-Key': 'insira_aqui_sua_apiKey'},
+        contentType: 'application/json', //busca os exercícios da API
+    })
+    .then(response => response.json()) 
+    .then(dados => {
+        listaExercicios = dados;
+        exercicioAtual = 0;
+        
+        localStorage.setItem('exercicios', JSON.stringify(listaExercicios)); // Transforma os dados da API e armazena no localStorage
+        
+        console.log(dados); // apenas para controle
+    })
+    .catch(error => console.log(error)); //exibir erros no console
+}
+
+getExercises();
+
+
+
+
+
